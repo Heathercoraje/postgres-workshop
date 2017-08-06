@@ -30,7 +30,7 @@ WHERE publishers.name = 'No Starch Press';
 SHOW A LIST OF EVERY BOOK AND ITS AUTHORS
 heathercoraje=# SELECT books.name, authors.surname, authors.first_name
 FROM books JOIN book_authors
-ON books.id = book_authors.book_id 
+ON books.id = book_authors.book_id
 JOIN authors
 ON book_authors.author_id = authors.id
 ORDER BY book_authors.book_id
@@ -43,3 +43,17 @@ ON books.id = book_authors.book_id
 JOIN authors
 ON authors.id = book_authors.author_id
 WHERE authors.surname = 'Burns';
+
+
+FIRST AND SURNAME OF AUTHOR WITH MORE THAN 3 BOOKS
+heathercoraje=# SELECT authors.first_name, authors.surname FROM authors JOIN book_authors
+ON book_authors.author_id = authors.id
+GROUP BY authors.id
+HAVING COUNT(book_authors.author_id) > 2;
+
+ORDER AUTHORS BY THE NUMBER OF BOOKS THEY HAVE PUBLISHED
+heathercoraje=# SELECT publishers.name, COUNT(books.publisher_id) FROM PUBLISHERS
+JOIN books
+ON books.publisher_id = publishers.id
+GROUP BY publishers.id
+ORDER BY COUNT(books.publisher_id) DESC;
