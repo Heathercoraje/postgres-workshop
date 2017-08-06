@@ -48,6 +48,7 @@ INNER JOIN authors
 ON book_authors.author_id = authors.id
 ORDER BY book_authors.book_id;
 
+
 /* Find all the books authored by Ted Burns. */
 
 SELECT books.name FROM books
